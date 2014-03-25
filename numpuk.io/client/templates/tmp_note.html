@@ -1,0 +1,11 @@
+<template name="tmp_note">
+    <input id="inpNewNote" type="text" placeholder="add new note" class="input-main" />
+    <div class="list-group">
+        {{#each notes}}
+        <a href="#" class="list-group-item" data-id="{{_id}}" data-unique="{{Unique}}">
+            <h4 class="list-group-item-heading">{{Title}}</h4>
+            <p class="list-group-item-text">{{Desc}}</p>
+        </a>
+        {{/each}}
+    </div>
+</template>
