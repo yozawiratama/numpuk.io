@@ -43,7 +43,7 @@ Router.map(function () {
             if (Meteor.userId() == null)
                 Router.go("/signin");
             else {
-                
+
             }
         },
         data: {
@@ -69,7 +69,44 @@ Router.map(function () {
             } 
         }
     });
-    this.route('todos', {
+    this.route('note_editor_new', {
+        path: '/note/editor',
+        template: 'tmp_note_editor',
+        after: function () {
+            if (Meteor.userId() == null)
+                Router.go("/signin");
+        },
+        data: {
+
+        }
+    });
+    this.route('note_editor_edit', {
+        path: '/note/editor/:unique',
+        template: 'tmp_note_editor',
+        after: function () {
+            if (Meteor.userId() == null)
+                Router.go("/signin");
+        },
+        data: {
+
+        }
+    });
+    this.route('foo', {
+        path: '/foo',
+        template: 'foo',
+        before: function () {
+            console.log("before");
+            if (typeof(Package.ui) == 'undefined') {
+                // Spark code here
+                console.log("spark");
+            } else {
+                // Blaze code here
+                console.log("blaze");
+            }
+//            UI.insert(UI.render(Template.tmp_landing), $('#content'))
+        }
+    });
+    this.route('todoornote', {
         path: '/:unique',
         template: 'tmp_todo',
         before: function () {
@@ -124,3 +161,18 @@ Router.map(function () {
     });
 
 });
+
+function Render(template) {
+    var fragment = Meteor.render(function () {
+        if (Template[template] !== undefined) {
+            return Template[template]();
+        }
+        else{
+            console.log("{2}before pagenotfound is rendered");
+            return Template[TemplateRef.PageNotFound]();
+        }
+
+    });
+
+    $('#divContent').html(fragment);
+}

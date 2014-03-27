@@ -1,6 +1,5 @@
 Meteor.methods({
-    AddNewList: function (title, desc, userid) {
-        var uni = GenerateUnique();
+    AddNewList: function (uni, title, desc, userid) {
         var list = Lists.insert({
             Title: title,
             Unique: uni,
@@ -15,20 +14,33 @@ Meteor.methods({
         if (list) return uni;
         else return false;
     },
-    AddNewNote: function (title, desc, userid) {
-        var uni = GenerateUnique();
+    AddNewNote: function (uni, title, content, share, edit, userid) {
+        console.log(uni);
         var note = Notes.insert({
             Title: title,
             Unique: uni,
-            Desc: desc,
-            IsPrivate : false,
-            IsEditable : true,
+            Content: content,
+            IsPrivate : share,
+            IsEditable : edit,
             CreatedBy: userid,
             CreatedAt: new Date(),
             LastModifiedBy: userid,
             LastModifiedAt: new Date(),
         });
         if (note) return uni;
+        else return false;
+    },
+    CreateUnique: function (type, userid) {
+        var uni = GenerateUnique();
+        var ut = UniqueType.insert({
+            Unique : uni,
+            Type : type,
+            CreatedBy: userid,
+            CreatedAt: new Date(),
+            LastModifiedBy: userid,
+            LastModifiedAt: new Date(),
+        });
+        if (ut) return uni;
         else return false;
     },
     AddNewTodo: function (title, listunique, desc, userid) {
