@@ -21,7 +21,6 @@ Template.tmp_todo.events({
                     }
                 });
 
-
             } else {
                 Meteor.call("AddNewTodo", newTodo.val(), Session.get(SessionRef.Name.ListUnique), "", cId, function (err, response) {
                     if (err) alert("fail");

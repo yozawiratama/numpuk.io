@@ -16,6 +16,9 @@
       },
       "iron-router-progress": {
         "version": "0.2.0"
+      },
+      "facebook-sdk": {
+        "version": "0.0.22"
       }
     },
     "packages": {
@@ -43,6 +46,11 @@
         "git": "https://github.com/Multiply/iron-router-progress.git",
         "tag": "v0.2.0",
         "commit": "ce730d1d26feadb7c75ea25f22c5bfdb0c549a8b"
+      },
+      "facebook-sdk": {
+        "git": "https://github.com/hugesuccess/facebook-sdk.git",
+        "tag": "v0.0.22",
+        "commit": "05fba3b342f3bc714ef68700e8e9ceeb46e694c7"
       }
     }
   }

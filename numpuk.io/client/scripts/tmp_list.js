@@ -4,19 +4,12 @@ Template.tmp_list.rendered = function () {
 };
 Template.tmp_list.events({
     'keyup #inpNewList': function (e) {
-        var newList = $('#inpNewList').val();
+        var newList = $('#inpNewList');
         if (e.which == 13) {
-            Meteor.call("CreateUnique", 'list', Meteor.userId(), function (err, res) {
-                if (err) {} else {
-                    Meteor.call("AddNewList", res, newList, "", Meteor.userId(), function (err, response) {
-                        if (err) alert("fail");
-                    });
-                }
-
+            
+            Meteor.call("AddNewList", newList.val(), "", Meteor.userId(), function (err, response) {
+                if (err) alert("fail");
             });
-//            Meteor.call("AddNewList", newList.val(), "", Meteor.userId(), function (err, response) {
-//                if (err) alert("fail");
-//            });
             newList.val("");
         }
     },
@@ -24,7 +17,7 @@ Template.tmp_list.events({
         e.preventDefault();
         var list = $(this)[0];
         //        console.log(list);
-        Router.go("todoornote", {
+        Router.go("todos", {
             unique: list.Unique
         });
     },

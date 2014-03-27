@@ -15,7 +15,11 @@ Router.configure({
 Router.map(function () {
     this.route('home', {
         path: '/',
-        template: 'tmp_landing'
+        template: 'tmp_landing',
+        after: function () {
+            $('#liSignIn').removeClass('active');
+            $('#liSignUp').removeClass('active');
+        }
     });
     this.route('about', {
         path: '/about',
@@ -26,6 +30,13 @@ Router.map(function () {
         template: 'tmp_todo',
         before: function () {
             Session.set(SessionRef.Name.ListUnique, null);
+        }
+    });
+    this.route('newnote', {
+        path: '/new/note',
+        template: 'tmp_note_editor',
+        before: function () {
+            Session.set(SessionRef.Name.NoteUnique, null);
         }
     });
     this.route('signin', {
@@ -50,6 +61,10 @@ Router.map(function () {
             lists: function () {
                 return Lists.find({
                     CreatedBy: Meteor.userId()
+                }, {
+                    sort: {
+                        CreatedAt: -1
+                    }
                 });
             }
         }
@@ -65,8 +80,41 @@ Router.map(function () {
             notes: function () {
                 return Notes.find({
                     CreatedBy: Meteor.userId()
+                }, {
+                    sort: {
+                        CreatedAt: -1
+                    }
                 });
             } 
+        }
+    });
+    this.route('notes', {
+        path: '/notes/:userid',
+        template: 'tmp_note',
+        after: function () {
+            console.log(this.params.userid);
+        },
+        data: {
+            
+        }
+    });
+    this.route('note', {
+        path: '/note/:unique',
+        template: 'tmp_note',
+        before: function () {
+            Session.set(SessionRef.Name.NoteUnique, this.params.unique);
+        },
+        after: function () {},
+        data: {
+            notes: function () {
+                return Notes.find({
+                    Unique: Session.get(SessionRef.Name.NoteUnique)
+                }, {
+                    sort: {
+                        CreatedAt: -1
+                    }
+                });
+            }
         }
     });
     this.route('note_editor_new', {
@@ -96,23 +144,26 @@ Router.map(function () {
         template: 'foo',
         before: function () {
             console.log("before");
-            if (typeof(Package.ui) == 'undefined') {
+            if (typeof (Package.ui) == 'undefined') {
                 // Spark code here
                 console.log("spark");
             } else {
                 // Blaze code here
                 console.log("blaze");
             }
-//            UI.insert(UI.render(Template.tmp_landing), $('#content'))
+            //            UI.insert(UI.render(Template.tmp_landing), $('#content'))
         }
     });
-    this.route('todoornote', {
+    this.route('todos', {
         path: '/:unique',
         template: 'tmp_todo',
         before: function () {
             Session.set(SessionRef.Name.ListUnique, this.params.unique);
         },
         data: {
+            Unique: function () {
+                return Session.get(SessionRef.Name.ListUnique);
+            },
             ListTitle: function () {
                 var list = Lists.findOne({
                     Unique: Session.get(SessionRef.Name.ListUnique)
@@ -166,8 +217,7 @@ function Render(template) {
     var fragment = Meteor.render(function () {
         if (Template[template] !== undefined) {
             return Template[template]();
-        }
-        else{
+        } else {
             console.log("{2}before pagenotfound is rendered");
             return Template[TemplateRef.PageNotFound]();
         }
