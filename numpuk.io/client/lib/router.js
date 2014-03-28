@@ -1,21 +1,18 @@
-Router.configure({
-    layoutTemplate: 'layout',
-    loadingTemplate: 'loading',
-    notFoundTemplate: 'page_404',
-    yieldTemplates: {
-        'tmp_header': {
-            to: 'header'
-        },
-        'tmp_footer': {
-            to: 'footer'
-        }
-    }
-});
-
 Router.map(function () {
     this.route('home', {
         path: '/',
         template: 'tmp_landing',
+        layoutTemplate: 'main_layout',
+        loadingTemplate: 'loading',
+        notFoundTemplate: 'page_404',
+        yieldTemplates: {
+            'tmp_header': {
+                to: 'header'
+            },
+            'tmp_footer': {
+                to: 'footer'
+            }
+        },
         after: function () {
             $('#liSignIn').removeClass('active');
             $('#liSignUp').removeClass('active');
@@ -23,34 +20,115 @@ Router.map(function () {
     });
     this.route('about', {
         path: '/about',
-        template: 'tmp_about'
+        template: 'tmp_about',
+        layoutTemplate: 'main_layout',
+        loadingTemplate: 'loading',
+        notFoundTemplate: 'page_404',
+        yieldTemplates: {
+            'tmp_header': {
+                to: 'header'
+            },
+            'tmp_footer': {
+                to: 'footer'
+            }
+        },
+        after: function () {
+            $('#liSignIn').removeClass('active');
+            $('#liSignUp').removeClass('active');
+        }
     });
     this.route('newtodos', {
         path: '/new',
         template: 'tmp_todo',
+        layoutTemplate: 'main_layout',
+        loadingTemplate: 'loading',
+        notFoundTemplate: 'page_404',
+        yieldTemplates: {
+            'tmp_header': {
+                to: 'header'
+            },
+            'tmp_footer': {
+                to: 'footer'
+            }
+        },
         before: function () {
             Session.set(SessionRef.Name.ListUnique, null);
+        },
+        after: function () {
+            $('#liSignIn').removeClass('active');
+            $('#liSignUp').removeClass('active');
         }
     });
     this.route('newnote', {
         path: '/new/note',
         template: 'tmp_note_editor',
+        layoutTemplate: 'main_layout',
+        loadingTemplate: 'loading',
+        notFoundTemplate: 'page_404',
+        yieldTemplates: {
+            'tmp_header': {
+                to: 'header'
+            },
+            'tmp_footer': {
+                to: 'footer'
+            }
+        },
         before: function () {
             Session.set(SessionRef.Name.NoteUnique, null);
+        },
+        after: function () {
+            $('#liSignIn').removeClass('active');
+            $('#liSignUp').removeClass('active');
         }
     });
     this.route('signin', {
         path: '/signin',
-        template: 'tmp_signin'
+        template: 'tmp_signin',
+        layoutTemplate: 'main_layout',
+        loadingTemplate: 'loading',
+        notFoundTemplate: 'page_404',
+        yieldTemplates: {
+            'tmp_header': {
+                to: 'header'
+            },
+            'tmp_footer': {
+                to: 'footer'
+            }
+        },
+
     });
     this.route('signup', {
         path: '/signup',
-        template: 'tmp_signup'
+        template: 'tmp_signup',
+        layoutTemplate: 'main_layout',
+        loadingTemplate: 'loading',
+        notFoundTemplate: 'page_404',
+        yieldTemplates: {
+            'tmp_header': {
+                to: 'header'
+            },
+            'tmp_footer': {
+                to: 'footer'
+            }
+        },
     });
     this.route('lists', {
         path: '/list',
         template: 'tmp_list',
+        layoutTemplate: 'main_layout',
+        loadingTemplate: 'loading',
+        notFoundTemplate: 'page_404',
+        yieldTemplates: {
+            'tmp_header': {
+                to: 'header'
+            },
+            'tmp_footer': {
+                to: 'footer'
+            }
+        },
         after: function () {
+            $('#liSignIn').removeClass('active');
+            $('#liSignUp').removeClass('active');
             if (Meteor.userId() == null)
                 Router.go("/signin");
             else {
@@ -72,7 +150,20 @@ Router.map(function () {
     this.route('notes', {
         path: '/notes',
         template: 'tmp_note',
+        layoutTemplate: 'main_layout',
+        loadingTemplate: 'loading',
+        notFoundTemplate: 'page_404',
+        yieldTemplates: {
+            'tmp_header': {
+                to: 'header'
+            },
+            'tmp_footer': {
+                to: 'footer'
+            }
+        },
         after: function () {
+            $('#liSignIn').removeClass('active');
+            $('#liSignUp').removeClass('active');
             if (Meteor.userId() == null)
                 Router.go("/signin");
         },
@@ -91,20 +182,69 @@ Router.map(function () {
     this.route('notes', {
         path: '/notes/:userid',
         template: 'tmp_note',
+        layoutTemplate: 'main_layout',
+        loadingTemplate: 'loading',
+        notFoundTemplate: 'page_404',
+        yieldTemplates: {
+            'tmp_header': {
+                to: 'header'
+            },
+            'tmp_footer': {
+                to: 'footer'
+            }
+        },
         after: function () {
+            $('#liSignIn').removeClass('active');
+            $('#liSignUp').removeClass('active');
             console.log(this.params.userid);
         },
         data: {
-            
+
+        }
+    });
+    this.route('note_editor_new', {
+        path: '/note/editor',
+        template: 'tmp_note_editor',
+        layoutTemplate: 'main_layout',
+        loadingTemplate: 'loading',
+        notFoundTemplate: 'page_404',
+        yieldTemplates: {
+            'tmp_header': {
+                to: 'header'
+            },
+            'tmp_footer': {
+                to: 'footer'
+            }
+        },
+        after: function () {
+            if (Meteor.userId() == null)
+                Router.go("/signin");
+        },
+        data: {
+
         }
     });
     this.route('note', {
         path: '/note/:unique',
         template: 'tmp_note',
+        layoutTemplate: 'main_layout',
+        loadingTemplate: 'loading',
+        notFoundTemplate: 'page_404',
+        yieldTemplates: {
+            'tmp_header': {
+                to: 'header'
+            },
+            'tmp_footer': {
+                to: 'footer'
+            }
+        },
         before: function () {
             Session.set(SessionRef.Name.NoteUnique, this.params.unique);
         },
-        after: function () {},
+        after: function () {
+            $('#liSignIn').removeClass('active');
+            $('#liSignUp').removeClass('active');
+        },
         data: {
             notes: function () {
                 return Notes.find({
@@ -117,20 +257,21 @@ Router.map(function () {
             }
         }
     });
-    this.route('note_editor_new', {
-        path: '/note/editor',
-        template: 'tmp_note_editor',
-        after: function () {
-            if (Meteor.userId() == null)
-                Router.go("/signin");
-        },
-        data: {
 
-        }
-    });
     this.route('note_editor_edit', {
         path: '/note/editor/:unique',
         template: 'tmp_note_editor',
+        layoutTemplate: 'main_layout',
+        loadingTemplate: 'loading',
+        notFoundTemplate: 'page_404',
+        yieldTemplates: {
+            'tmp_header': {
+                to: 'header'
+            },
+            'tmp_footer': {
+                to: 'footer'
+            }
+        },
         after: function () {
             if (Meteor.userId() == null)
                 Router.go("/signin");
@@ -142,6 +283,17 @@ Router.map(function () {
     this.route('foo', {
         path: '/foo',
         template: 'foo',
+        layoutTemplate: 'main_layout',
+        loadingTemplate: 'loading',
+        notFoundTemplate: 'page_404',
+        yieldTemplates: {
+            'tmp_header': {
+                to: 'header'
+            },
+            'tmp_footer': {
+                to: 'footer'
+            }
+        },
         before: function () {
             console.log("before");
             if (typeof (Package.ui) == 'undefined') {
@@ -157,6 +309,21 @@ Router.map(function () {
     this.route('todos', {
         path: '/:unique',
         template: 'tmp_todo',
+        layoutTemplate: 'main_layout',
+        loadingTemplate: 'loading',
+        notFoundTemplate: 'page_404',
+        yieldTemplates: {
+            'tmp_header': {
+                to: 'header'
+            },
+            'tmp_footer': {
+                to: 'footer'
+            }
+        },
+        after: function () {
+            $('#liSignIn').removeClass('active');
+            $('#liSignUp').removeClass('active');
+        },
         before: function () {
             Session.set(SessionRef.Name.ListUnique, this.params.unique);
         },

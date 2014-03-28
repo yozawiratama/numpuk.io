@@ -2,21 +2,43 @@
     <div class="container">
         <div class="marginTop20">
             <a class="btn btn-primary" href="/note/editor">Create Note</a>
-<!--
+            <!--
             <div class="pull-right">
                 <a class="btn">test</a>
                 </div>
 -->
         </div>
         {{#each notes}}
+<!--
         <div class="panel panel-default marginTop20">
             <div class="panel-body">
                 <h1>{{Title}}</h1>
-                <p><div class="fb-like" data-href="http://numpuk.meteor.com/note/{{Unique}}" data-layout="standard" data-action="like" data-show-faces="true" data-share="true"></div></p>
+                <p>
+                    <div class="fb-like" data-href="http://numpuk.meteor.com/note/{{Unique}}" data-layout="standard" data-action="like" data-show-faces="true" data-share="true"></div>
+                </p>
                 <span>{{Content}}</span>
             </div>
             <div class="panel-footer">
-                <a href="/note/{{Unique}}" class="btn btn-default">Open</a> {{CreatedAt}}
+                <a href="/note/{{Unique}}" class="btn btn-default">Open</a>{{CreatedAt}}
+            </div>
+        </div>
+-->
+        
+        <div class="col-md-12">
+            <h1><a href="/note/{{Unique}}">{{Title}}</a></h1>
+            <p>{{Content}}</p>
+            <div>
+                <span class="badge">{{CreatedAt}}</span>
+<!--
+                <div class="pull-right">
+                    <span class="label label-default">alice</span>
+                    <span class="label label-primary">story</span>
+                    <span class="label label-success">blog</span>
+                    <span class="label label-info">personal</span>
+                    <span class="label label-warning">Warning</span>
+                    <span class="label label-danger">Danger</span>
+                </div>
+-->
             </div>
         </div>
         {{/each}}

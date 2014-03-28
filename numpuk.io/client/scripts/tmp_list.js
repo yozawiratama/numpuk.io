@@ -1,6 +1,5 @@
 Template.tmp_list.created = function () {};
 Template.tmp_list.rendered = function () {
-    $('#liLists').addClass('active');
 };
 Template.tmp_list.events({
     'keyup #inpNewList': function (e) {

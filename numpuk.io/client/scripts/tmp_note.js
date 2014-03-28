@@ -1,6 +1,5 @@
 Template.tmp_note.created = function () {};
 Template.tmp_note.rendered = function () {
-    $('#liNotes').addClass('active');
 };
 Template.tmp_note.events({
     'keyup #inpNewNote': function (e) {

@@ -24,13 +24,20 @@
 </head>
 
 <body>
-    {{>layout}}
     <div id="fb-root"></div>
 
 </body>
 
-<template name="layout">
-    {{yield 'header'}} {{yield}} {{yield 'footer'}}
+<template name="main_layout">
+    <div>
+        {{> yield region="header"}}
+    </div>
+    <div>
+        {{> yield}}
+    </div>
+    <div>
+        {{> yield region="footer"}}
+    </div>
 </template>
 
 <template name="loading">

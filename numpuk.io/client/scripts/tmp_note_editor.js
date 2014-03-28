@@ -1,19 +1,14 @@
-Template.tmp_note_editor.rendered = function () {
-
-    $('#shareable').bootstrapSwitch();
-    $('#editable').bootstrapSwitch();
-};
 Template.tmp_note_editor.events({
     'submit': function (e) {
         e.preventDefault();
         var title = $('#title').val();
         var content = $('#content').val();
-        var share = $('#shareable').bootstrapSwitch('state');
-        var edit = $('#editable').bootstrapSwitch('state');
-        console.log(content);
+        var share = true;
+        var edit = false;
+        var createdby = Meteor.userId();
+        if(createdby == null) createdby = "Anonymous";
         if (Session.equals(SessionRef.Name.NoteUnique, null)) {
-            console.log("masuk");
-            Meteor.call("AddNewNote", title, content, share, edit, Meteor.userId(), function (err, response) {
+            Meteor.call("AddNewNote", title, content, share, edit, createdby, function (err, response) {
                 if (err) console.log(err);
                 else {
                     console.log(response);
@@ -21,7 +16,7 @@ Template.tmp_note_editor.events({
                 }
             });
         } else {
-            Meteor.call("AddNewNote", title, content, share, edit, Meteor.userId(), function (err, response) {
+            Meteor.call("AddNewNote", title, content, share, edit, createdby, function (err, response) {
                 if (err) console.log(err);
                 else {
                     Router.go("/notes");
