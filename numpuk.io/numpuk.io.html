@@ -12,6 +12,7 @@
           ga('create', 'UA-49391159-1', 'meteor.com');
           ga('send', 'pageview');
     </script>
+<!--
     <script>
         (function(d, s, id) {
           var js, fjs = d.getElementsByTagName(s)[0];
@@ -21,10 +22,11 @@
           fjs.parentNode.insertBefore(js, fjs);
         }(document, 'script', 'facebook-jssdk'));
     </script>
+-->
 </head>
 
 <body>
-    <div id="fb-root"></div>
+<!--    <div id="fb-root"></div>-->
 
 </body>
 
@@ -32,7 +34,7 @@
     <div>
         {{> yield region="header"}}
     </div>
-    <div>
+    <div style="min-height:100%;background-color:#f8f8f8;">
         {{> yield}}
     </div>
     <div>

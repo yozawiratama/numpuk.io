@@ -22,7 +22,8 @@ h6 {
     /* If you're making other pages, make sure there is 50px of padding to make sure the navbar doesn't overlap content! */
     padding-bottom: 50px;
     color: #f8f8f8;
-    background: url(/intro-bg.jpg) no-repeat center center;
+/*    background: url(/intro-bg.jpg) no-repeat center center;*/
+    background-color: #428bca;
     background-size: cover;
     text-align: center;
 }
@@ -89,7 +90,8 @@ h6 {
 .banner {
     padding: 100px 0;
     color: #f8f8f8;
-    background: url(/banner-bg.jpg) no-repeat center center;
+/*    background: url(/banner-bg.jpg) no-repeat center center;*/
+    background-color: #428bca;
     background-size: cover;
 }
 .banner h2 {
@@ -126,11 +128,11 @@ h6 {
     }
 }
 header {
-    background-color: #f8f8f8;
+/*    background-color: white;*/
     padding: 10px 0;
 }
 footer {
-    background-color: #f8f8f8;
+/*    background-color: #f8f8f8;*/
     padding: 50px 0;
 }
 p.copyright {

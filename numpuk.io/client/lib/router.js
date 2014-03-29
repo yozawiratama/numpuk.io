@@ -13,7 +13,8 @@ Router.map(function () {
                 to: 'footer'
             }
         },
-        after: function () {
+        onAfterAction: function () {
+            console.log("wow");
             $('#liSignIn').removeClass('active');
             $('#liSignUp').removeClass('active');
         }
@@ -32,7 +33,7 @@ Router.map(function () {
                 to: 'footer'
             }
         },
-        after: function () {
+        onAfterAction: function () {
             $('#liSignIn').removeClass('active');
             $('#liSignUp').removeClass('active');
         }
@@ -51,10 +52,10 @@ Router.map(function () {
                 to: 'footer'
             }
         },
-        before: function () {
+        onBeforeAction: function () {
             Session.set(SessionRef.Name.ListUnique, null);
         },
-        after: function () {
+        onAfterAction: function () {
             $('#liSignIn').removeClass('active');
             $('#liSignUp').removeClass('active');
         }
@@ -73,10 +74,10 @@ Router.map(function () {
                 to: 'footer'
             }
         },
-        before: function () {
+        onBeforeAction: function () {
             Session.set(SessionRef.Name.NoteUnique, null);
         },
-        after: function () {
+        onAfterAction: function () {
             $('#liSignIn').removeClass('active');
             $('#liSignUp').removeClass('active');
         }
@@ -126,9 +127,10 @@ Router.map(function () {
                 to: 'footer'
             }
         },
-        after: function () {
-            $('#liSignIn').removeClass('active');
-            $('#liSignUp').removeClass('active');
+        onAfterAction: function () {
+            console.log('after');
+            $('#liNotes').removeClass('active');
+            $('#liLists').addClass('active');
             if (Meteor.userId() == null)
                 Router.go("/signin");
             else {
@@ -161,9 +163,9 @@ Router.map(function () {
                 to: 'footer'
             }
         },
-        after: function () {
-            $('#liSignIn').removeClass('active');
-            $('#liSignUp').removeClass('active');
+        onAfterAction: function () {
+            $('#liNotes').addClass('active');
+            $('#liLists').removeClass('active');
             if (Meteor.userId() == null)
                 Router.go("/signin");
         },
@@ -193,7 +195,7 @@ Router.map(function () {
                 to: 'footer'
             }
         },
-        after: function () {
+        onAfterAction: function () {
             $('#liSignIn').removeClass('active');
             $('#liSignUp').removeClass('active');
             console.log(this.params.userid);
@@ -216,7 +218,7 @@ Router.map(function () {
                 to: 'footer'
             }
         },
-        after: function () {
+        onAfterAction: function () {
             if (Meteor.userId() == null)
                 Router.go("/signin");
         },
@@ -238,10 +240,10 @@ Router.map(function () {
                 to: 'footer'
             }
         },
-        before: function () {
+        onBeforeAction: function () {
             Session.set(SessionRef.Name.NoteUnique, this.params.unique);
         },
-        after: function () {
+        onAfterAction: function () {
             $('#liSignIn').removeClass('active');
             $('#liSignUp').removeClass('active');
         },
@@ -272,7 +274,7 @@ Router.map(function () {
                 to: 'footer'
             }
         },
-        after: function () {
+        onAfterAction: function () {
             if (Meteor.userId() == null)
                 Router.go("/signin");
         },
@@ -294,7 +296,7 @@ Router.map(function () {
                 to: 'footer'
             }
         },
-        before: function () {
+        onBeforeAction: function () {
             console.log("before");
             if (typeof (Package.ui) == 'undefined') {
                 // Spark code here
@@ -320,11 +322,11 @@ Router.map(function () {
                 to: 'footer'
             }
         },
-        after: function () {
+        onAfterAction: function () {
             $('#liSignIn').removeClass('active');
             $('#liSignUp').removeClass('active');
         },
-        before: function () {
+        onBeforeAction: function () {
             Session.set(SessionRef.Name.ListUnique, this.params.unique);
         },
         data: {
@@ -380,16 +382,16 @@ Router.map(function () {
 
 });
 
-function Render(template) {
-    var fragment = Meteor.render(function () {
-        if (Template[template] !== undefined) {
-            return Template[template]();
-        } else {
-            console.log("{2}before pagenotfound is rendered");
-            return Template[TemplateRef.PageNotFound]();
-        }
-
-    });
-
-    $('#divContent').html(fragment);
-}
+//function Render(template) {
+//    var fragment = Meteor.render(function () {
+//        if (Template[template] !== undefined) {
+//            return Template[template]();
+//        } else {
+//            console.log("{2}before pagenotfound is rendered");
+//            return Template[TemplateRef.PageNotFound]();
+//        }
+//
+//    });
+//
+//    $('#divContent').html(fragment);
+//}

@@ -4,7 +4,7 @@
     /*    margin-bottom: -152px;*/
 }
 .input-main {
-    margin: 0;
+    margin: 20px 0 0;
     padding: 0;
     height: 75px;
     width: 100%;
@@ -35,4 +35,15 @@ a.mod-brand {
 input[type=checkbox]:checked + label {
     text-decoration: line-through;
     color: rgb(128, 144, 160);
+}
+/*tr.checked {
+    background-color: #428bca;
+    color: white;
+}*/
+
+.note {
+    margin: 20px 0 0;
+    padding: 20px;
+    border: 0;
+    background-color: white;
 }

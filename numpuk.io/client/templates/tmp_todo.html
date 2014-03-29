@@ -1,46 +1,52 @@
 <template name="tmp_todo">
     <div>
-        <h1>{{ListTitle}}
-            <small>{{ListDesc}}</small>
-        </h1>
-<!--
+        <div class="container">
+            <div>
+                <h1>{{ListTitle}}
+                    <small>{{ListDesc}}</small>
+                </h1>
+                <!--
         <p>
             <div class="fb-share-button" data-href="http://numpuk.meteor.com/{{Unique}}" data-type="button_count"></div>
         </p>
 -->
+            </div>
+            <input id="inpNewTodo" type="text" placeholder="add new todo" class="input-main" />
+            <table class="table table-hover table-bordered">
+                <tbody>
+                    {{#each unchecked_todos}}
+                    <tr>
+                        <td>
+                            <div class="checkbox">
+                                <input type="checkbox" id="cbx{{_id}}">
+                                <label for="cbx{{_id}}">
+                                    {{Title}}
+                                </label>
+                                <small>
+                                    <a href="#" class="text-muted delete">Delete</a>
+                                </small>
+                            </div>
+                        </td>
+                    </tr>
+                    {{/each}} {{#each checked_todos}}
+                    <tr class="checked">
+                        <td>
+                            <div class="checkbox">
+                                <input type="checkbox" id="cbx{{_id}}" checked>
+                                <label for="cbx{{_id}}">
+                                    {{Title}}
+                                </label>
+                                <small>
+                                    <a href="#" class="text-muted delete">Delete</a>
+                                </small>
+                            </div>
+                        </td>
+                    </tr>
+                    {{/each}}
+                </tbody>
+            </table>
+        </div>
+
     </div>
-    <input id="inpNewTodo" type="text" placeholder="add new todo" class="input-main" />
-    <table class="table table-hover table-bordered">
-        <tbody>
-            {{#each unchecked_todos}}
-            <tr>
-                <td>
-                    <div class="checkbox">
-                        <input type="checkbox" id="cbx{{_id}}">
-                        <label for="cbx{{_id}}">
-                            {{Title}}
-                        </label>
-                        <small>
-                            <a href="#" class="text-muted delete">Delete</a>
-                        </small>
-                    </div>
-                </td>
-            </tr>
-            {{/each}} {{#each checked_todos}}
-            <tr>
-                <td>
-                    <div class="checkbox">
-                        <input type="checkbox" id="cbx{{_id}}" checked>
-                        <label for="cbx{{_id}}">
-                            {{Title}}
-                        </label>
-                        <small>
-                            <a href="#" class="text-muted delete">Delete</a>
-                        </small>
-                    </div>
-                </td>
-            </tr>
-            {{/each}}
-        </tbody>
-    </table>
+
 </template>
