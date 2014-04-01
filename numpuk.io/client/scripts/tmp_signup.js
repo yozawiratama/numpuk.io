@@ -6,15 +6,19 @@ $('#liSignUp').addClass('active');
 Template.tmp_signup.events({
     'submit': function (e) {
         e.preventDefault();
+        var username = trimInput($('#inpSignupUserName').val());
         var name = trimInput($('#inpSignupName').val());
         var email = trimInput($('#inpSignupEmail').val());
         var pwd = trimInput($('#inpSignupPwd').val());
         var repwd = trimInput($('#inpSignupRePwd').val());
         if (pwd == repwd) {
             Accounts.createUser({
-                name: name,
+                username: username,
                 email: email,
-                password: pwd
+                password: pwd,
+                profile : {
+                Name : name
+                }
             }, function (err) {
                 if (err) {
                     console.log(err.message);
@@ -23,8 +27,6 @@ Template.tmp_signup.events({
 
                     //                    console.log(this.userId);
                     //                    Accounts.sendVerificationEmail(this.userId, email);
-
-                    console.log(this);
                     var to = email;
                     var from = "info@numpuk.io";
                     var subject = "numpuk - email verification";
@@ -40,7 +42,7 @@ Template.tmp_signup.events({
                         }
                     });
                     console.log(Meteor.userId());
-                    Router.navigate("", true);
+                    Router.go("");
                     //                    alert("success!");
                 }
 

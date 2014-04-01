@@ -19,6 +19,21 @@ Router.map(function () {
             $('#liSignUp').removeClass('active');
         }
     });
+    this.route('desktop_dashboard', {
+        path: '/dashboard',
+        template: 'tmp_dashboard',
+        layoutTemplate: 'main_layout',
+        loadingTemplate: 'loading',
+        notFoundTemplate: 'page_404',
+        yieldTemplates: {
+            'tmp_header': {
+                to: 'header'
+            }
+        },
+        onAfterAction: function () {
+            
+        }
+    });
     this.route('about', {
         path: '/about',
         template: 'tmp_about',
