@@ -1,3 +1,14 @@
+Template.tmp_note_editor.rendered = function () {
+    $.fn.editable.defaults.mode = 'inline';
+    $('#content').wysihtml5();
+    $('#noteTitle').editable({
+        emptyText: "Title"
+    });
+    $('#noteContent').editable({
+        emptyText: "Content"
+    });
+};
+
 Template.tmp_note_editor.events({
     'submit': function (e) {
         e.preventDefault();
@@ -6,13 +17,13 @@ Template.tmp_note_editor.events({
         var share = true;
         var edit = false;
         var createdby = Meteor.userId();
-        if(createdby == null) createdby = "Anonymous";
+        if (createdby == null) createdby = "Anonymous";
         if (Session.equals(SessionRef.Name.NoteUnique, null)) {
             Meteor.call("AddNewNote", title, content, share, edit, createdby, function (err, response) {
                 if (err) console.log(err);
                 else {
                     console.log(response);
-                    Router.go("/note/"+response);
+                    Router.go("/note/" + response);
                 }
             });
         } else {

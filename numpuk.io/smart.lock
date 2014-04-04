@@ -16,6 +16,18 @@
       },
       "iron-router-progress": {
         "version": "0.3.1"
+      },
+      "x-editable-bootstrap3": {
+        "version": "1.5.2"
+      },
+      "bootstrap-select": {
+        "version": "1.5.2"
+      },
+      "bootstrap-growl": {
+        "version": "0.1.1"
+      },
+      "bootstrap3-wysihtml5": {
+        "version": "0.3.3"
       }
     },
     "packages": {
@@ -43,6 +55,26 @@
         "git": "https://github.com/Multiply/iron-router-progress.git",
         "tag": "v0.3.1",
         "commit": "3f7900feb4bb70a1289b39a1fdcd1f438c0335b3"
+      },
+      "x-editable-bootstrap3": {
+        "git": "https://github.com/JustinSGray/meteor-x-editable-bootstrap.git",
+        "tag": "v1.5.2",
+        "commit": "1e5e6d7bddf0b17cc6ea2fc1f50c3f9fd2cfc3f3"
+      },
+      "bootstrap-select": {
+        "git": "https://github.com/amrali/bootstrap-select-meteor.git",
+        "tag": "v1.5.2",
+        "commit": "61588ec8326987ded204724d85843eb6997cfcfb"
+      },
+      "bootstrap-growl": {
+        "git": "https://github.com/TimHeckel/meteor-bootstrap-growl.git",
+        "tag": "v0.1.1",
+        "commit": "674fd231a46e405f8d4eb463725d8003a02374ec"
+      },
+      "bootstrap3-wysihtml5": {
+        "git": "https://github.com/andreioprisan/meteor-bootstrap3-wysihtml5.git",
+        "tag": "v0.3.3",
+        "commit": "251d564c3eb5b5b7a89a3e3e63f58633e0816332"
       },
       "blaze-layout": {
         "git": "https://github.com/EventedMind/blaze-layout.git",

@@ -34,6 +34,14 @@ Router.map(function () {
             
         }
     });
+    this.route('app', {
+        path: '/app',
+        template: 'tmp_note_editor',
+        layoutTemplate: 'tmp_app_layout',
+        loadingTemplate: 'loading',
+        notFoundTemplate: 'page_404',
+        
+    });
     this.route('about', {
         path: '/about',
         template: 'tmp_about',

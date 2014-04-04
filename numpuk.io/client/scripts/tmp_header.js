@@ -5,7 +5,8 @@ Template.tmp_header.mobile = function () {
 };
 
 Template.tmp_header.email = function () {
-    return Meteor.user().emails[0].address;
+    if (Meteor.user())
+        return Meteor.user().emails[0].address;
 };
 
 Template.tmp_header.loggedin = function () {

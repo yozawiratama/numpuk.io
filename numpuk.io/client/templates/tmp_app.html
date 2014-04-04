@@ -1,0 +1,45 @@
+<template name="tmp_app">
+
+</template>
+
+<template name="tmp_app_layout">
+    <article class="col-sm-3 col-md-3 col-lg-2 marginTop20">
+        <div class="profile">
+            <img src="http://placehold.it/150x150" alt="..." class="img-responsive img-circle">
+            <p>{{Name}}</p>
+            <p>{{Promoter}}</p>
+            <p>{{Slogan}}</p>
+        </div>
+        <ul class="list-group">
+            <a href="/{{Unique}}">
+                <li class="list-group-item">Home</li>
+                {{#if loggedin}}
+                <li class="list-group-item">Notes</li>
+                <li class="list-group-item">To-do List</li>
+                <li class="list-group-item">Sign Out</li>
+                {{else}}
+                <li class="list-group-item">Accounts</li>
+                {{/if}}
+            </a>
+        </ul>
+    </article>
+    <div class="col-sm-3 col-md-3 col-lg-3 marginTop20">
+        <div class="list-group">
+            <a href="#" class="list-group-item active">
+                <h4 class="list-group-item-heading">List group item heading</h4>
+                <p class="list-group-item-text">...</p>
+            </a>
+            <a href="#" class="list-group-item ">
+                <h4 class="list-group-item-heading">List group item heading</h4>
+                <p class="list-group-item-text">...</p>
+            </a>
+            <a href="#" class="list-group-item ">
+                <h4 class="list-group-item-heading">List group item heading</h4>
+                <p class="list-group-item-text">...</p>
+            </a>
+        </div>
+    </div>
+    <div class="col-sm-6 col-md-6 col-lg-7 marginTop20">
+        {{>yield}}
+    </div>
+</template>

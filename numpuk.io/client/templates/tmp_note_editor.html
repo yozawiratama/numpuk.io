@@ -1,14 +1,16 @@
 <template name="tmp_note_editor">
-    <div class="container">
-        <div class="panel panel-default marginTop20">
+        <div class="panel panel-default">
             <form role="form" class="form">
                 <div class="panel-body">
 
                     <div class="form-group">
-                        <input id="title" type="text" class="form-control" placeholder="untitled note" />
+<!--                        <input id="title" type="text" class="form-control" placeholder="untitled note" />-->
+                        <a href="#" id="noteTitle" data-type="text">{{note_title}}</a>
                     </div>
+                    <hr />
                     <div class="form-group">
-                        <textarea id="content" type="email" class="form-control" style="min-height:200px;" placeholder="Content"></textarea>
+                        <div id="noteContent" data-type="wysihtml5"></div>
+<!--                        <textarea id="content" type="email" class="form-control" style="min-height:200px;" placeholder="Content"></textarea>-->
                     </div>
 <!--
                     <div class="form-group">
@@ -26,5 +28,4 @@
                 </div>
             </form>
         </div>
-    </div>
 </template>
