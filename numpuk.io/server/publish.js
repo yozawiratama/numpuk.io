@@ -1,10 +1,10 @@
 Meteor.publish('list', function (user_id, unique) {
     if (user_id != null) {
-        return Lists.find({
+        return TodoLists.find({
             CreatedBy: user_id
         });
     } else {
-        return Lists.find({
+        return TodoLists.find({
             Unique: unique
         });
     }

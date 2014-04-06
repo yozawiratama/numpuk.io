@@ -1,6 +1,6 @@
 Template.tmp_note_editor.rendered = function () {
     $.fn.editable.defaults.mode = 'inline';
-    $('#content').wysihtml5();
+//    $('#content').wysihtml5();
     $('#noteTitle').editable({
         emptyText: "Title"
     });

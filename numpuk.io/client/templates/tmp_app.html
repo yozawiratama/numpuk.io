@@ -2,42 +2,140 @@
 
 </template>
 
+<template name="tmp_app_note">
+
+</template>
+
+<template name="tmp_app_todo">
+    <div>
+        <h1>
+            <a id="todoTitle" data-type="text">{{ListTitle}}</a>
+        </h1>
+        <h1>
+            <small>
+                <a id="todoDesc" data-type="text">{{ListDesc}}</a>
+            </small>
+        </h1>
+        <a id="inpPrivate" data-type="select">{{isPrivate}}</a>
+    </div>
+    <div>
+        <input id="inpNewTodo" type="text" placeholder="add new todo" class="input-main" />
+        <table class="table table-hover table-bordered">
+            <tbody>
+                {{#each unchecked_todos}}
+                <tr>
+                    <td>
+                        <div class="checkbox">
+                            <input type="checkbox" id="cbx{{_id}}">
+                            <label for="cbx{{_id}}">
+                                {{Title}}
+                            </label>
+                            <small>
+                                <a href="#" class="text-muted delete">Delete</a>
+                            </small>
+                        </div>
+                    </td>
+                </tr>
+                {{/each}} {{#each checked_todos}}
+                <tr class="checked">
+                    <td>
+                        <div class="checkbox">
+                            <input type="checkbox" id="cbx{{_id}}" checked>
+                            <label for="cbx{{_id}}">
+                                {{Title}}
+                            </label>
+                            <small>
+                                <a href="#" class="text-muted delete">Delete</a>
+                            </small>
+                        </div>
+                    </td>
+                </tr>
+                {{/each}}
+            </tbody>
+        </table>
+    </div>
+</template>
+
+<template name="tmp_app_profile">
+    <div class="form-horizontal">
+        <div class="form-group">
+            <label class="label-control col-md-3">Name</label>
+            <div class="col-md-4">
+                <a>Yoza Wiratama</a>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="label-control col-md-3">Gender</label>
+            <div class="col-md-4">
+                <a>Male</a>
+            </div>
+        </div>
+    </div>
+</template>
+
 <template name="tmp_app_layout">
     <article class="col-sm-3 col-md-3 col-lg-2 marginTop20">
         <div class="profile">
-            <img src="http://placehold.it/150x150" alt="..." class="img-responsive img-circle">
+            <img src="{{userPhoto}}" alt="..." class="img-responsive img-circle">
             <p>{{Name}}</p>
             <p>{{Promoter}}</p>
             <p>{{Slogan}}</p>
         </div>
         <ul class="list-group">
-            <a href="/{{Unique}}">
+            <a href="/app">
                 <li class="list-group-item">Home</li>
-                {{#if loggedin}}
-                <li class="list-group-item">Notes</li>
-                <li class="list-group-item">To-do List</li>
-                <li class="list-group-item">Sign Out</li>
-                {{else}}
-                <li class="list-group-item">Accounts</li>
-                {{/if}}
             </a>
+            {{#if loggedin}}
+            <a href="/app/profile">
+                <li class="list-group-item {{isProfileActive}}">Profile</li>
+            </a>
+            <a href="/app/notes">
+                <li class="list-group-item {{isNotesActive}}">Notes</li>
+            </a>
+            <a href="/app/todos">
+                <li class="list-group-item {{isTodosActive}}">To-do List</li>
+            </a>
+            <a id="hplSignOut" href="/app">
+                <li class="list-group-item">Sign Out</li>
+            </a>
+            {{else}}
+            <a href="/app/signin">
+                <li class="list-group-item {{isSignInActive}}">Sign In</li>
+            </a>
+            <a href="/app/signup">
+                <li class="list-group-item {{isSignUpActive}}">Sign Up</li>
+            </a>
+            {{/if}}
+
         </ul>
     </article>
     <div class="col-sm-3 col-md-3 col-lg-3 marginTop20">
+        {{#if notesOrHome}}
+
         <div class="list-group">
-            <a href="#" class="list-group-item active">
-                <h4 class="list-group-item-heading">List group item heading</h4>
-                <p class="list-group-item-text">...</p>
+            {{#each list_notes}}
+            <a href="#" class="list-group-item">
+                <h4 class="list-group-item-heading">{{Title}}</h4>
+                <p class="list-group-item-text">{{Clue}}</p>
             </a>
-            <a href="#" class="list-group-item ">
-                <h4 class="list-group-item-heading">List group item heading</h4>
-                <p class="list-group-item-text">...</p>
-            </a>
-            <a href="#" class="list-group-item ">
-                <h4 class="list-group-item-heading">List group item heading</h4>
-                <p class="list-group-item-text">...</p>
-            </a>
+            {{/each}}
         </div>
+        {{/if}} {{#if profile}}
+        <ul class="list-group">
+            <a href="/app/profile">
+                <li class="list-group-item active">Profile</li>
+            </a>
+        </ul>
+        {{/if}} {{#if todolist}}
+        <div class="list-group">
+            {{#each list_todolists}}
+            <a href="#" class="list-group-item">
+                <h4 class="list-group-item-heading">{{Title}}</h4>
+                <p class="list-group-item-text">{{Desc}}</p>
+            </a>
+            {{/each}}
+        </div>
+        {{/if}}
     </div>
     <div class="col-sm-6 col-md-6 col-lg-7 marginTop20">
         {{>yield}}

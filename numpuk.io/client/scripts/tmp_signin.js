@@ -9,15 +9,20 @@ Template.tmp_signin.events({
         console.log("sign in");
         var email = $('#inpSigninEmail').val();
         var pwd = $('#inpSigninPwd').val();
+        $('#btnSignin').text('Signing In ...');
+        $('#btnSignin').attr('disabled', true);
         Meteor.loginWithPassword(email, pwd, function (err) {
             if (err) {
                 console.log(err);
                 alert("Incorrect");
             } else {
-                Router.go("/list");
+                if(!Session.equals("AppPage", null))
+                    Router.go("/app");
+                else
+                    Router.go("/list");
             }
         });
-        return false;
+        
     },
     'click #hplforgot': function (e) {
         e.preventDefault();

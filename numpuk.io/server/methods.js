@@ -1,20 +1,5 @@
 Meteor.methods({
-    AddNewList: function (title, desc, userid) {
-        var uni = GenerateUnique();
-        var list = Lists.insert({
-            Title: title,
-            Unique: uni,
-            Desc: desc,
-            IsPrivate : false,
-            IsEditable : true,
-            CreatedBy: userid,
-            CreatedAt: new Date(),
-            LastModifiedBy: userid,
-            LastModifiedAt: new Date(),
-        });
-        if (list) return uni;
-        else return false;
-    },
+    
     AddNewNote: function (title, content, share, edit, userid) {
         var uni = GenerateUnique();
         var note = Notes.insert({

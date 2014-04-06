@@ -18,7 +18,7 @@ function generate(length) {
         var pos = (Math.floor(Math.random() * 331) + 17) % chars.length;
         result += chars.substr(pos, 1);
     }
-    if (Lists.find({
+    if (TodoLists.find({
         Unique: result
     }).count() > 0) {
         return generate(length);

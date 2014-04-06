@@ -1,6 +1,7 @@
 SessionRef = {
     Name: {
         ListUnique: "listunique",
+        TodoListUnique: "todolistunique",
         NoteUnique: "noteunique",
     },
     Value: {}

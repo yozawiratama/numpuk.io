@@ -4,7 +4,7 @@ todohandle = null;
 
 Deps.autorun(function () {
     var user_id = Meteor.userId();
-    var listunique = Session.get(SessionRef.Name.ListUnique);
+    var listunique = Session.get(SessionRef.Name.TodoListUnique);
     var noteunique = Session.get(SessionRef.Name.NoteUnique);
     listhandle = Meteor.subscribe('list', user_id, listunique);
     notehandle = Meteor.subscribe('note', user_id, noteunique);

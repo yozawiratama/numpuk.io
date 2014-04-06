@@ -31,17 +31,117 @@ Router.map(function () {
             }
         },
         onAfterAction: function () {
-            
+
         }
     });
+
+    //app
     this.route('app', {
         path: '/app',
         template: 'tmp_note_editor',
         layoutTemplate: 'tmp_app_layout',
         loadingTemplate: 'loading',
         notFoundTemplate: 'page_404',
-        
+        onBeforeAction: function () {
+            Session.set("AppPage", "Home");
+
+        }
     });
+    this.route('app_signin', {
+        path: '/app/signin',
+        template: 'tmp_signin',
+        layoutTemplate: 'tmp_app_layout',
+        loadingTemplate: 'loading',
+        notFoundTemplate: 'page_404',
+        onBeforeAction: function () {
+            Session.set("AppPage", "SignIn");
+
+        },
+        onAfterAction: function () {
+            if (Meteor.userId()) Router.go("/app");
+        }
+
+    });
+    this.route('app_signup', {
+        path: '/app/signup',
+        template: 'tmp_signup',
+        layoutTemplate: 'tmp_app_layout',
+        loadingTemplate: 'loading',
+        notFoundTemplate: 'page_404',
+        onBeforeAction: function () {
+            Session.set("AppPage", "SignUp");
+
+        },
+        onAfterAction: function () {
+            if (Meteor.userId()) Router.go("/app");
+        }
+
+    });
+    
+    this.route('app_profile', {
+        path: '/app/profile',
+        template: 'tmp_app_profile',
+        layoutTemplate: 'tmp_app_layout',
+        loadingTemplate: 'loading',
+        notFoundTemplate: 'page_404',
+        onBeforeAction: function () {
+            Session.set("AppPage", "Profile");
+
+        },
+        onAfterAction: function () {
+            if (!Meteor.userId()) Router.go("/app");
+        }
+
+    });
+    this.route('app_note', {
+        path: '/app/notes',
+        template: 'tmp_app_note',
+        layoutTemplate: 'tmp_app_layout',
+        loadingTemplate: 'loading',
+        notFoundTemplate: 'page_404',
+        onBeforeAction: function () {
+            Session.set("AppPage", "Notes");
+
+        },
+        onAfterAction: function () {
+            if (!Meteor.userId()) Router.go("/app");
+        }
+
+    });
+    
+    this.route('app_todo', {
+        path: '/app/todos',
+        template: 'tmp_app_todo',
+        layoutTemplate: 'tmp_app_layout',
+        loadingTemplate: 'loading',
+        notFoundTemplate: 'page_404',
+        onBeforeAction: function () {
+            Session.set("AppPage", "Todos");
+            Session.set(SessionRef.Name.TodoListUnique);
+        },
+        onAfterAction: function () {
+            if (!Meteor.userId()) Router.go("/app");
+            Session.set(SessionRef.Name.TodoListUnique, null);
+        }
+
+    });
+    this.route('app_todo', {
+        path: '/app/todos/:unique',
+        template: 'tmp_app_todo',
+        layoutTemplate: 'tmp_app_layout',
+        loadingTemplate: 'loading',
+        notFoundTemplate: 'page_404',
+        onBeforeAction: function () {
+            Session.set("AppPage", "Todos");
+
+        },
+        onAfterAction: function () {
+            Session.set(SessionRef.Name.TodoListUnique, this.params.unique);
+        }
+
+    });
+
+
     this.route('about', {
         path: '/about',
         template: 'tmp_about',
